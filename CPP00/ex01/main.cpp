@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:02:14 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/18 18:41:47 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:31:19 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void) {
         else if (command == "SEARCH")
             phoneBook.serachContact();
         else
-            std::cout << "Invalid command" << std::endl;
+            std::cout << "Invalid command" << std::endl << std::endl;
     }
     return (0);
 }
