@@ -6,12 +6,12 @@
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 19:36:44 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/17 19:37:20 by aait-mal         ###   ########.fr        #
+#    Updated: 2023/10/18 15:58:55 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
-SRC = PhoneBook.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
