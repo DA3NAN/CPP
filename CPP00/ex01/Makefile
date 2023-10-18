@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/17 18:15:31 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/17 18:20:46 by aait-mal         ###   ########.fr        #
+#    Created: 2023/10/17 19:36:44 by aait-mal          #+#    #+#              #
+#    Updated: 2023/10/17 19:37:20 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
-SRC = megaphone.cpp
+NAME = phonebook
+SRC = PhoneBook.cpp
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
