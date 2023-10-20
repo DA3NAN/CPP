@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:52:31 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/18 21:34:11 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:34:22 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	Contact::displayData(int index) {
 
 void    Contact::displayDataExtended() {
     if (firstName.empty() && lastName.empty() && nickName.empty() && phoneNumber.empty() && darkestSecret.empty()) {
+		std::cout << "\033[1;31m";
         std::cout << "No data to display" << std::endl << std::endl;
+        std::cout << "\033[0m";
         return ;
     }
     std::cout << "First name: " << firstName << std::endl;
@@ -42,4 +44,10 @@ void    Contact::displayDataExtended() {
     std::cout << "Phone number: " << phoneNumber << std::endl;
     std::cout << "Darkest secret: " << darkestSecret << std::endl << std::endl;
     return ;
+}
+
+bool	Contact::isEmpty() {
+    if (firstName.empty() && lastName.empty() && nickName.empty() && phoneNumber.empty() && darkestSecret.empty())
+        return (true);
+    return (false);
 }

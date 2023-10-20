@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:02:14 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/18 21:31:19 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:50:32 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int main(void) {
 
     while (1) {
         std::string command;
-        std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
-        std::cout << "Enter a command: ";
+        std::cout << "Available commands: " << "\033[1;32m" << "ADD, SEARCH, EXIT" << std::endl;
+        std::cout << "\033[0m";
+        std::cout << "Command#> ";
         std::getline(std::cin, command);
         if (std::cin.eof())
-            exit(0) ;
+            clearerr(stdin), std::cin.clear(), std::cout<<std::endl;
         else if (command == "EXIT")
             break ;
         else if (command == "ADD") {
@@ -33,8 +34,14 @@ int main(void) {
         }
         else if (command == "SEARCH")
             phoneBook.serachContact();
-        else
+        else {
+            std::cout << "\033[1;31m";
             std::cout << "Invalid command" << std::endl << std::endl;
+            std::cout << "\033[0m";
+        }
+
+            //red color text
+        // std::cout << "\033[1;31m" << "Hello World" << std::endl;
     }
     return (0);
 }

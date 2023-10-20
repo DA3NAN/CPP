@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:02:21 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/18 21:28:23 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:31:11 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Contact {
 				std::string phoneNumber, std::string darkestSecret);
 		void	displayData(int index);
 		void	displayDataExtended();
+		bool	isEmpty();
 };
 
 #endif
