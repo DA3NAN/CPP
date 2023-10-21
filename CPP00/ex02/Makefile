@@ -6,23 +6,23 @@
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 21:45:15 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/18 22:13:05 by aait-mal         ###   ########.fr        #
+#    Updated: 2023/10/21 15:23:03 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Account
-SRC = Account.cpp tests.cpp
+SRC = $(wildcard *.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :

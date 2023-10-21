@@ -6,23 +6,23 @@
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 19:36:44 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/18 15:58:55 by aait-mal         ###   ########.fr        #
+#    Updated: 2023/10/21 15:24:01 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
-SRC = PhoneBook.cpp Contact.cpp main.cpp
+SRC = $(wildcard *.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
