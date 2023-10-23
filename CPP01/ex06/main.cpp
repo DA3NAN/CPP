@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:19:16 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/23 12:50:18 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:35:00 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,7 @@ int main(int argc, char **argv) {
 	}
 	std::string level = argv[1];
     Harl harl;
-	int levelCode = level_code(level);
-
-	for (int i = levelCode; i < 4; i++) {
-		switch (i) {
-			case 0:
-				harl.complain("DEBUG");
-				break;
-			case 1:
-				harl.complain("INFO");
-				break;
-			case 2:
-				harl.complain("WARNING");
-				break;
-			case 3:
-				harl.complain("ERROR");
-				break;
-			default:
-				std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-				return (1);
-		}
-	}
+	harl.complain(level);
 
 	return (0);
 }

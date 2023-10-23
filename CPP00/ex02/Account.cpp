@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 21:42:54 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/18 22:32:49 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:00:17 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int Account::getNbWithdrawals(void) {
 
 void Account::displayAccountsInfos(void) {
     Account::_displayTimestamp();
-    std::cout << "accounts:" << Account::_nbAccounts << ";total:" << Account::_totalAmount << ";deposits:" << Account::_totalNbDeposits << ";withdrawals:" << Account::_totalNbWithdrawals << std::endl;
+    std::cout << "accounts:" << Account::_nbAccounts << ";total:" << Account::_totalAmount
+        << ";deposits:" << Account::_totalNbDeposits << ";withdrawals:" << Account::_totalNbWithdrawals << std::endl;
 }
 
 void Account::makeDeposit(int deposit) {

@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 17:23:20 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/22 18:12:56 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:27:43 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	replace(std::string filename, std::string s1, std::string s2) {
 	}
 
 	std::string line;
-	std::string newLine;
 	while (std::getline(input, line)) {
 		if (input.fail()) {
 			std::cerr << "Error: cannot read from file " << filename << std::endl;
@@ -35,10 +34,9 @@ void	replace(std::string filename, std::string s1, std::string s2) {
 		}
 
 		size_t pos = 0;
-		while ((pos = line.find(s1, pos)) != std::string::npos) {
-			newLine = line.substr(0, pos) + s2 + line.substr(pos + s1.length());
-			line = newLine;
-			pos += s2.length();
+		while ((pos = line.find(s1)) != std::string::npos) {
+			line.erase(pos, s1.length());
+			line.insert(pos, s2);
 		}
 		if (input.eof())
 			output << line;
