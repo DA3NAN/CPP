@@ -6,12 +6,13 @@
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 12:18:49 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/23 12:26:28 by aait-mal         ###   ########.fr        #
+#    Updated: 2023/10/23 14:41:04 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = HarlFilter
 SRC = $(wildcard *.cpp)
+HEADER = $(wildcard *.hpp *.h)
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
@@ -22,7 +23,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :

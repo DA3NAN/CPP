@@ -6,12 +6,13 @@
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/17 19:36:44 by aait-mal          #+#    #+#              #
-#    Updated: 2023/10/21 15:24:01 by aait-mal         ###   ########.fr        #
+#    Updated: 2023/10/23 14:36:14 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 SRC = $(wildcard *.cpp)
+HEADER = $(wildcard *.hpp *.h)
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
@@ -22,7 +23,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
