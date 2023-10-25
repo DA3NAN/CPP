@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:18:05 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/25 15:02:54 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:08:01 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ HumanB::~HumanB() {
 }
 
 void HumanB::attack() {
+	std::cout << this->name << " attacks with his ";
 	if (this->weapon)
-		std::cout << this->name << " attacks with his " << this->weapon->getType() << std::endl;
+		std::cout << this->weapon->getType();
+	std::cout << std::endl;
 }
 
 void HumanB::setWeapon(Weapon &weapon) {
