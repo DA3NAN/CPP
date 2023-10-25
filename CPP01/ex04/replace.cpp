@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 17:23:20 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/23 16:27:43 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:51:31 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ void	replace(std::string filename, std::string s1, std::string s2) {
 		}
 
 		size_t pos = 0;
-		while ((pos = line.find(s1)) != std::string::npos) {
+		while ((pos = line.find(s1, pos)) != std::string::npos) {
 			line.erase(pos, s1.length());
 			line.insert(pos, s2);
+			pos += s2.length();
 		}
 		if (input.eof())
 			output << line;
