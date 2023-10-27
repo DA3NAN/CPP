@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:15:20 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/25 20:02:56 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/27 17:18:27 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int main(void) {
 	Zombie *zombie = newZombie("zombie");
+	if (!zombie)
+		return (1);
 	zombie->announce();
 	randomChump("zombie");
 	delete zombie;
