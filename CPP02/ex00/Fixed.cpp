@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 19:45:41 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/27 20:14:41 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:21:54 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ Fixed::Fixed(const Fixed &fixed) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
 }
-
 
 Fixed::~Fixed(void) {
 	std::cout << "Destructor called" << std::endl;
