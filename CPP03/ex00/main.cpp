@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:51:30 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 19:04:33 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/28 21:10:39 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ int main(void)
 	clapTrap.attack("Charmouta");
 	clapTrap.beRepaired(10);
 	clapTrap.attack("Charmouta");
+	clapTrap.beRepaired(10);
+	clapTrap.takeDamage(15);
+	clapTrap.attack("Charmouta");
+	clapTrap.takeDamage(10);
+	clapTrap.beRepaired(20);
+	clapTrap.attack("Charmouta");
+	clapTrap.attack("Charmouta");
+	clapTrap.attack("Charmouta");
+	clapTrap.beRepaired(10);
 	std::cout << std::endl;
 
 	return (0);

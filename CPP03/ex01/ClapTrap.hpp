@@ -6,14 +6,14 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:42:47 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 21:46:54 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/28 21:59:16 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-#include <iostream>
+# include <iostream>
 
 class ClapTrap {
 	protected:
@@ -27,9 +27,9 @@ class ClapTrap {
 		ClapTrap(ClapTrap const & src);
 		~ClapTrap();
 		ClapTrap & operator=(ClapTrap const & src);
-		void attack(std::string const & target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		virtual void attack(std::string const & target);
+		virtual void takeDamage(unsigned int amount);
+		virtual void beRepaired(unsigned int amount);
 };
 
 #endif
