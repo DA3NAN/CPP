@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:17:51 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 16:22:31 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/29 21:54:11 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,7 @@ void FragTrap::takeDamage(unsigned int amount) {
 		std::cout << "FragTrap " << this->name << " is fragged off, can't take more damage!" << std::endl;
 		return ;
 	}
-	if (this->hitPoints < (int)amount) {
-		this->hitPoints = 0;
-		std::cout << "FragTrap " << this->name << " is fragged off!" << std::endl;
-		return ;
-	}
-	this->hitPoints -= amount;
+	this->hitPoints = ((int)amount >= this->hitPoints) ? 0 : (this->hitPoints - amount);
 	std::cout << "FragTrap " << this->name << " takes " << amount << " points of damage! ";
 	if (this->hitPoints < 1) {
 		std::cout << this->name << " is fragged off!" << std::endl;

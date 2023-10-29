@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:48:43 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 15:30:58 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/29 21:53:15 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 ScavTrap::ScavTrap() : ClapTrap() {
 	std::cout << "ScavTrap default constructor called" << std::endl;
-	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
+	hitPoints = 100;
+	energyPoints = 50;
+	attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	std::cout << "ScavTrap constructor called" << std::endl;
-	this->hitPoints = 100;
-	this->energyPoints = 50;
-	this->attackDamage = 20;
+	hitPoints = 100;
+	energyPoints = 50;
+	attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(ScavTrap const & src) : ClapTrap(src) {
@@ -64,15 +64,10 @@ void ScavTrap::takeDamage(unsigned int amount) {
 		std::cout << "ScavTrap " << this->name << " is powered off, can't take more damage!" << std::endl;
 		return ;
 	}
-	if (this->hitPoints < (int)amount) {
-		this->hitPoints = 0;
-		std::cout << "ScavTrap " << this->name << " is powered off!" << std::endl;
-		return ;
-	}
-	this->hitPoints -= amount;
+	this->hitPoints = ((int)amount >= this->hitPoints) ? 0 : (this->hitPoints - amount);
 	std::cout << "ScavTrap " << this->name << " takes " << amount << " points of damage! ";
 	if (this->hitPoints < 1) {
-		std::cout << this->name << " is dead!" << std::endl;
+		std::cout << this->name << " is powered off!" << std::endl;
 		return ;
 	}
 	std::cout << this->hitPoints << " hitPoints left" << std::endl;

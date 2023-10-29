@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:42:47 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 21:46:54 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:55:52 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 class ClapTrap {
-	protected:
+	private:
 		std::string name;
 		int 		hitPoints;
 		int			energyPoints;

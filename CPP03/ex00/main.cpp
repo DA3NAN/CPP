@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:51:30 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 21:10:39 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/29 21:13:39 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,41 @@
 
 int main(void)
 {
-	ClapTrap clapTrap("Al3arbi");
-	ClapTrap clapTrap2(clapTrap);
-	ClapTrap clapTrap3("Ba3bou3");
+	ClapTrap clap("Ba3bou3");
+	ClapTrap clap2("Charmouta");
+	ClapTrap clap3(clap);
+	ClapTrap clap4;
 
-	clapTrap3 = clapTrap2;
+	clap4 = clap2;
 
 	std::cout << std::endl;
-	clapTrap.attack("Charmouta");
-	clapTrap.takeDamage(10);
-	clapTrap.beRepaired(10);
-	clapTrap.attack("Charmouta");
-	clapTrap.takeDamage(7);
-	clapTrap.takeDamage(8);
-	clapTrap.takeDamage(10);
-	clapTrap.attack("Charmouta");
-	clapTrap.beRepaired(10);
-	clapTrap.attack("Charmouta");
-	clapTrap.beRepaired(10);
-	clapTrap.takeDamage(15);
-	clapTrap.attack("Charmouta");
-	clapTrap.takeDamage(10);
-	clapTrap.beRepaired(20);
-	clapTrap.attack("Charmouta");
-	clapTrap.attack("Charmouta");
-	clapTrap.attack("Charmouta");
-	clapTrap.beRepaired(10);
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap.attack("Charmouta");
+	clap2.takeDamage(0);
+	clap2.attack("Ba3bou3");
+	clap.takeDamage(0);
+	clap.beRepaired(10);
+	clap2.attack("Ba3bou3");
+	clap.takeDamage(0);
+	clap.beRepaired(5);
+	clap.attack("Charmouta");
+	clap.beRepaired(10);
 	std::cout << std::endl;
+
+	clap4.attack("Ba3bou3");
+	clap3.takeDamage(10);
+	clap3.attack("Charmouta");
+	clap3.beRepaired(10);
+	clap3.attack("Charmouta");
+	clap4.takeDamage(10);
+	std::cout << std::endl;
+
 
 	return (0);
 }
