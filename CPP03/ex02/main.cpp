@@ -5,36 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 22:06:45 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 15:30:35 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/10/29 16:22:38 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/10/29 16:23:25 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-int main()
+int main(void)
 {
-	ScavTrap a("a");
-	ScavTrap b("b");
-	ClapTrap *c = new ScavTrap("c");
-
+	FragTrap frag("Fraggy");
+	FragTrap frag2(frag);
+	FragTrap frag3;
+	frag3 = frag2;
+	
 	std::cout << std::endl;
-	a.attack("b");
-	b.takeDamage(20);
-	b.attack("a");
-	a.takeDamage(20);
-	a.guardGate();
-	b.guardGate();
+	frag.attack("Badass");
+	frag.takeDamage(20);
+	frag.beRepaired(10);
+	frag.highFivesGuys();
 	std::cout << std::endl;
-
-	c->attack("b");
-	b.takeDamage(20);
-	b.attack("c");
-	c->takeDamage(20);
-	c->takeDamage(20);
-	c->beRepaired(20);
-	// c->guardGate();
-	std::cout << std::endl;
-
-	return 0;
+	
+	return (0);
 }
