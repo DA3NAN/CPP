@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 21:24:25 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 15:16:30 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/10/30 15:19:37 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/10/30 15:21:23 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
-# include <iostream>
-# include "ClapTrap.hpp"
+# include "Animal.hpp"
 
-class ScavTrap : public ClapTrap {
+class Dog : public Animal {
 	public:
-		ScavTrap();
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const & src);
-		~ScavTrap();
-		ScavTrap & operator=(ScavTrap const & src);
-		void attack(std::string const & target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-		void guardGate();
-
+		Dog();
+		Dog(Dog const & src);
+		virtual ~Dog();
+		Dog & operator=(Dog const & src);
+		virtual void makeSound() const;
 };
-
-
 
 #endif

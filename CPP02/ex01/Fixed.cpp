@@ -6,11 +6,13 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:44:38 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 14:44:40 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:56:56 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::bits = 8;
 
 Fixed::Fixed(void) : value(0) {
 	std::cout << "Default constructor called" << std::endl;

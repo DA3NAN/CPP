@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:41:17 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 16:59:11 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:57:14 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Fixed {
 	private:
 		int					value;
-		static const int	bits = 8;
+		static const int	bits;
 	public:
 		Fixed(void);
 		Fixed(const int value);

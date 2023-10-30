@@ -6,11 +6,13 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:48:49 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/28 17:00:36 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:57:19 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::bits = 8;
 
 Fixed::Fixed(void) : value(0) {
 }
