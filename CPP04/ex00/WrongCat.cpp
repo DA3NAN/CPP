@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 15:21:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 17:20:03 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/10/30 17:25:02 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/10/30 17:27:10 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog() : Animal("Dog") {
-	std::cout << "Dog Default constructor called" << std::endl;
+WrongCat::WrongCat() : WrongAnimal("WrongCat") {
+	std::cout << "WrongCat Default constructor called" << std::endl;
 }
 
-Dog::Dog(Dog const & src) {
-	std::cout << "Dog Copy constructor called" << std::endl;
+WrongCat::WrongCat(WrongCat const & src) {
+	std::cout << "WrongCat Copy constructor called" << std::endl;
 	*this = src;
 }
 
-Dog::~Dog() {
-	std::cout << "Dog Destructor called" << std::endl;
+WrongCat::~WrongCat() {
+	std::cout << "WrongCat Destructor called" << std::endl;
 }
 
-Dog & Dog::operator=(Dog const & src) {
-	std::cout << "Dog Copy Assignment operator called" << std::endl;
+WrongCat & WrongCat::operator=(WrongCat const & src) {
+	std::cout << "WrongCat Copy Assignment operator called" << std::endl;
 	if (this != &src)
 		this->type = src.type;
 	return (*this);
 }
 
-void Dog::makeSound() const {
+void WrongCat::makeSound() const {
 	std::cout << "bark bark!!" << std::endl;
 }

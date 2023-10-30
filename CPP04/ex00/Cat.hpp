@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:25:21 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 15:25:45 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:35:54 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class Cat : public Animal {
 	public:
 		Cat();
 		Cat(Cat const & src);
-		virtual ~Cat();
+		~Cat();
 		Cat & operator=(Cat const & src);
-		virtual void makeSound() const;
+		void makeSound() const;
 };
 
 #endif
