@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:48:49 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 14:57:19 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/31 23:12:31 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,31 @@ bool	Fixed::operator!=(const Fixed &fixed) const {
 }
 
 Fixed	Fixed::operator+(const Fixed &fixed) const {
-	return (Fixed(this->toFloat() + fixed.toFloat()));
+	Fixed res;
+
+	res.setRawBits(this->getRawBits() + fixed.getRawBits());
+	return (res);
 }
 
 Fixed	Fixed::operator-(const Fixed &fixed) const {
-	return (Fixed(this->toFloat() - fixed.toFloat()));
+	Fixed res;
+
+	res.setRawBits(this->getRawBits() - fixed.getRawBits());
+	return (res);
 }
 
 Fixed	Fixed::operator*(const Fixed &fixed) const {
-	return (Fixed(this->toFloat() * fixed.toFloat()));
+	Fixed res;
+
+	res.setRawBits((static_cast<long long>(this->getRawBits()) * fixed.getRawBits()) >> bits);
+	return res;
 }
 
-Fixed	Fixed::operator/(const Fixed &fixed) const {
-	return (Fixed(this->toFloat() / fixed.toFloat()));
+Fixed Fixed::operator/(const Fixed &fixed) const {
+    Fixed res;
+
+    res.setRawBits((static_cast<long long>(this->getRawBits()) << bits) / fixed.getRawBits());
+    return res;
 }
 
 Fixed	&Fixed::operator++(void) {
