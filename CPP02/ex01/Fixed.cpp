@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:44:38 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 14:56:56 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:40:13 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ Fixed	&Fixed::operator=(const Fixed &fixed) {
 }
 
 int		Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->value);
 }
 
