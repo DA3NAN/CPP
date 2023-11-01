@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 18:46:38 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/19 18:09:18 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:16:41 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void PhoneBook::serachContact(void) {
 		return ;
 	}
 	else {
-		std::cout << "---------------------------------------------------" << std::endl;
-		std::cout << "      Index | First name |  Last name |    Nickname" << std::endl;
+		std::cout << "-------------------------------------------" << std::endl;
+		std::cout << "    Index |First name| Last name|  Nickname" << std::endl;
 		for (i = 0; i < 8; i++)
 			if (!contact[i].isEmpty())
 				contact[i].displayData(i);
-		std::cout << "---------------------------------------------------" << std::endl;
+		std::cout << "-------------------------------------------" << std::endl;
 	
 		std::cout << "Enter index (1 - 8): ";
 		std::getline(std::cin, indexString);

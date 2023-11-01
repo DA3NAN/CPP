@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:58:28 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 17:06:52 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:43:55 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main()
 {
 	int	N = 10;
-	Animal *animals[N];
+	A_Animal *animals[N];
 	Dog dog;
 	
 	for (int i = 0; i < N; i++)
@@ -34,6 +34,6 @@ int main()
 		
 	for (int i = 0; i < N; i++)
 		delete animals[i];
-	
+		
 	return (0);
 }

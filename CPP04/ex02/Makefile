@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/17 19:36:44 by aait-mal          #+#    #+#              #
-#    Updated: 2023/11/01 18:33:54 by aait-mal         ###   ########.fr        #
+#    Created: 2023/11/01 17:07:32 by aait-mal          #+#    #+#              #
+#    Updated: 2023/11/01 17:08:39 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = AbstractAnimal
 SRC = $(wildcard *.cpp)
 HEADER = $(wildcard *.hpp *.h)
 
