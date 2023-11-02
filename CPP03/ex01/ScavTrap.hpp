@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 21:24:25 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 15:16:30 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:27:23 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ class ScavTrap : public ClapTrap {
 		void guardGate();
 
 };
-
-
 
 #endif
