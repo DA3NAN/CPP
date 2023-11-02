@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 22:06:45 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 21:55:41 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:30:16 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,30 @@
 
 int main()
 {
-	ScavTrap a("a");
-	ScavTrap b("b");
-	ClapTrap *c = new ScavTrap("c");
+	ScavTrap a("CHATGPT");
+	ScavTrap b("MIDJOURNEY");
 
 	std::cout << std::endl;
-	a.attack("b");
+	a.attack("MIDJOURNEY");
 	b.takeDamage(20);
-	b.attack("a");
+	a.attack("MIDJOURNEY");
+	b.takeDamage(20);
+	a.attack("MIDJOURNEY");
+	b.takeDamage(20);
+	a.attack("MIDJOURNEY");
+	b.takeDamage(20);
+	a.attack("MIDJOURNEY");
+	b.takeDamage(20);
+	std::cout << std::endl;
+	
+	b.attack("CHATGPT");
+	b.beRepaired(10);
+	b.attack("CHATGPT");
 	a.takeDamage(20);
+	std::cout << std::endl;
+
 	a.guardGate();
 	b.guardGate();
-	std::cout << std::endl;
-
-	c->attack("b");
-	b.takeDamage(20);
-	b.attack("c");
-	c->takeDamage(20);
-	c->takeDamage(20);
-	c->beRepaired(20);
-	// c->guardGate();
 	std::cout << std::endl;
 
 	return 0;

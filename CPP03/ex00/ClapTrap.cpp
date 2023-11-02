@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:44:37 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 21:53:23 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:48:53 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap() : hitPoints(10), energyPoints(10), attackDamage(0) {
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
-	std::cout << "ClapTrap constructor called" << std::endl;
+	std::cout << "ClapTrap parametric constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src) {
@@ -73,6 +73,6 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		return ;
 	}
 	this->energyPoints -= 1;
-	this->hitPoints += amount;
+	(this->hitPoints + amount) > 10 ? this->hitPoints = 10 : this->hitPoints += amount;
 	std::cout << "ClapTrap " << this->name << " has been repaired with " << amount << " hitPoints! Now has " << this->hitPoints << std::endl;
 }

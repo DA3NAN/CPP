@@ -6,15 +6,14 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:25:52 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 18:36:03 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:14:20 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : brain(new Brain()) {
+Cat::Cat() : AAnimal("Cat"), brain(new Brain()) {
 	std::cout << "Cat Default constructor called" << std::endl;
-	type = "Cat";
 }
 
 Cat::Cat(Cat const & src) {

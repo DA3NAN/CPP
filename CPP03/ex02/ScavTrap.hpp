@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 15:25:21 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/02 13:27:19 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/10/28 21:24:25 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/10/29 15:16:30 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP	
-# define CAT_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include <iostream>
+# include "ClapTrap.hpp"
 
-class Cat : public Animal {
-	private:
-		Brain *brain;
+class ScavTrap : public ClapTrap {
 	public:
-		Cat();
-		Cat(Cat const & src);
-		virtual ~Cat();
-		Cat & operator=(Cat const & src);
-		void makeSound() const;
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(ScavTrap const & src);
+		~ScavTrap();
+		ScavTrap & operator=(ScavTrap const & src);
+		void attack(std::string const & target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+		void guardGate();
+
 };
+
+
 
 #endif

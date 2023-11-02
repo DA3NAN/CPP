@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 17:34:05 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/02 13:14:20 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/11/01 19:22:32 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/11/01 19:52:46 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 # include <iostream>
+# include "ICharacter.hpp"
 
-class AAnimal {
+class AMateria {
 	protected:
 		std::string type;
 	public:
-		AAnimal();
-		AAnimal(std::string type);
-		AAnimal(AAnimal const & src);
-		virtual ~AAnimal();
-		AAnimal & operator=(AAnimal const & src);
-		std::string getType() const;
-		void setType(std::string type);
-		virtual void makeSound() const = 0;
+		AMateria();
+		AMateria(std::string const & type);
+		AMateria(AMateria const & src);
+		virtual ~AMateria();
+		AMateria & operator=(AMateria const & src);
+		std::string const & getType() const; //Returns the materia type
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
 };
 
 #endif

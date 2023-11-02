@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 15:25:21 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/02 13:27:19 by aait-mal         ###   ########.fr       */
+/*   Created: 2023/11/01 19:31:00 by aait-mal          #+#    #+#             */
+/*   Updated: 2023/11/01 21:25:28 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP	
-# define CAT_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "AMateria.hpp"
 
-class Cat : public Animal {
-	private:
-		Brain *brain;
+class Ice : public AMateria {
 	public:
-		Cat();
-		Cat(Cat const & src);
-		virtual ~Cat();
-		Cat & operator=(Cat const & src);
-		void makeSound() const;
+		Ice();
+		Ice(Ice const & src);
+		virtual ~Ice();
+		Ice & operator=(Ice const & src);
+		virtual AMateria* clone() const;
+		virtual void use(ICharacter& target);
 };
 
 #endif

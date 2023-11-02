@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:19:37 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 22:47:42 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:27:24 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog : public Animal {
 	public:
 		Dog();
 		Dog(Dog const & src);
-		~Dog();
+		virtual ~Dog();
 		Dog & operator=(Dog const & src);
 		void makeSound() const;
 };

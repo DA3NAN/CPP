@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:19:37 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 17:53:41 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:25:03 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "Animal.hpp"
 # include "Brain.hpp"
 
-class Dog : public A_Animal {
+class Dog : public AAnimal {
 	private:
 		Brain *brain;
 	public:
 		Dog();
 		Dog(Dog const & src);
-		~Dog();
+		virtual ~Dog();
 		Dog & operator=(Dog const & src);
 		void makeSound() const;
 };

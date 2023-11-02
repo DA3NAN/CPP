@@ -6,15 +6,14 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:21:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 17:54:18 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:14:20 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog() : brain(new Brain()) {
+Dog::Dog() : AAnimal("Dog"), brain(new Brain()) {
 	std::cout << "Dog Default constructor called" << std::endl;
-	type = "Dog";
 }
 
 Dog::Dog(Dog const & src) {

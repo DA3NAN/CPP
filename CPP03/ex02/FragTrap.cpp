@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 16:17:51 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 21:54:11 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:55:27 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void FragTrap::attack(std::string const & target) {
 		return ;
 	}
 	this->energyPoints -= 1;
-	std::cout << "FragTrap " << this->name << " attacks " << target << ", with the FRAGGY punch causing " << this->attackDamage << " points of damage!" << std::endl;
+	std::cout << "FragTrap " << this->name << " attacks " << target << ", with the FRAGGYPUNCH causing " << this->attackDamage << " points of damage!" << std::endl;
 }
 
 void FragTrap::takeDamage(unsigned int amount) {
@@ -78,11 +78,9 @@ void FragTrap::beRepaired(unsigned int amount) {
 		std::cout << "FragTrap " << this->name << " has no energy points!" << std::endl;
 		return ;
 	}
-	this->hitPoints += amount;
-	std::cout << "FragTrap " << this->name << " is repaired with " << amount << " points! ";
-	if (this->hitPoints > 100)
-		this->hitPoints = 100;
-	std::cout << this->hitPoints << " hitPoints left" << std::endl;
+	this->energyPoints -= 1;
+	(this->hitPoints + amount) > 100 ? this->hitPoints = 100 : this->hitPoints += amount;
+	std::cout << "FragTrap " << this->name << " is repaired with " << amount << " hitPoints! Now has " << this->hitPoints << std::endl;
 }
 
 void FragTrap::highFivesGuys(void) {

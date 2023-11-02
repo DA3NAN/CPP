@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:51:30 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/29 21:13:39 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:24:57 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,25 @@ int main(void)
 	clap.attack("Charmouta");
 	clap.attack("Charmouta");
 	clap.attack("Charmouta");
+	
 	clap2.takeDamage(0);
 	clap2.attack("Ba3bou3");
 	clap.takeDamage(0);
 	clap.beRepaired(10);
+	std::cout << std::endl;
+	
 	clap2.attack("Ba3bou3");
 	clap.takeDamage(0);
 	clap.beRepaired(5);
+	std::cout << std::endl;
+	
 	clap.attack("Charmouta");
 	clap.beRepaired(10);
 	std::cout << std::endl;
 
+	// clap4 and clap3
 	clap4.attack("Ba3bou3");
-	clap3.takeDamage(10);
+	clap3.takeDamage(80);
 	clap3.attack("Charmouta");
 	clap3.beRepaired(10);
 	clap3.attack("Charmouta");
