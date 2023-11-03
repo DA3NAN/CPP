@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:25:52 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/10/30 21:36:38 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:33:10 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Cat::Cat(Cat const & src) {
 }
 
 Cat::~Cat() {
-	delete brain;
+	if (this->brain)
+		delete this->brain;
 	std::cout << "Cat Destructor called" << std::endl;
 }
 

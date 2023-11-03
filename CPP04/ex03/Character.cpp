@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:46:55 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 21:32:46 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:26:05 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ Character::Character(Character const & src) {
 }
 
 Character::~Character() {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++) {
 		if (this->inventory[i])
 			delete this->inventory[i];
+		if (this->unequiped[i])
+			delete this->unequiped[i];
+	}
 }
 
 Character & Character::operator=(Character const & src) {
-	if (this != &src)
-	{
+	if (this != &src) {
 		this->name = src.name;
 		for (int i = 0; i < 4; i++)
 			if (this->inventory[i])
@@ -52,16 +54,23 @@ std::string const & Character::getName() const {
 
 void Character::equip(AMateria* m) {
 	for (int i = 0; i < 4; i++)
-		if (!this->inventory[i])
-		{
+		if (!this->inventory[i]) {
 			this->inventory[i] = m;
 			break ;
 		}
+		else if (i == 3)
+			std::cout << "Inventory is full" << std::endl;
 }
 
 void Character::unequip(int idx) {
-	if (idx >= 0 && idx < 4)
+	if (idx >= 0 && idx < 4 && this->inventory[idx]) {
+		for (int i = 0; i < 4; i++)
+			if (!this->unequiped[i]) {
+				this->unequiped[i] = this->inventory[idx];
+				break ;
+			}
 		this->inventory[idx] = NULL;
+	}
 }
 
 void Character::use(int idx, ICharacter& target) {

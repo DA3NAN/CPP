@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:21:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/02 13:14:20 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:44:59 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Dog::Dog(Dog const & src) {
 }
 
 Dog::~Dog() {
-	delete brain;
+	if (this->brain)
+		delete this->brain;
 	std::cout << "Dog Destructor called" << std::endl;
 }
 

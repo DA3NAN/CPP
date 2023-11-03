@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:56:22 by aait-mal          #+#    #+#             */
-/*   Updated: 2023/11/01 21:30:42 by aait-mal         ###   ########.fr       */
+/*   Updated: 2023/11/03 18:27:09 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void MateriaSource::learnMateria(AMateria* m) {
 		this->materias[this->count] = m;
 		this->count++;
 	}
+	else 
+		std::cout << "MateriaSource is full" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
