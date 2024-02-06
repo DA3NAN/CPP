@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:29:42 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:49:04 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:15:00 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int main() {
 	Bureaucrat a("A", 1);
 	Bureaucrat b("B", 72);
 	ShrubberyCreationForm Shru("home");
-	PresidentialPardonForm Pres("home");
-	RobotomyRequestForm Robo("home");
+	PresidentialPardonForm Pres("Zlatan");
+	RobotomyRequestForm Robo("Cow");
 
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
