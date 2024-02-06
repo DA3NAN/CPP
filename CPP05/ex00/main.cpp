@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:57:21 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/05 17:23:52 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:31:16 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main() {
 	Bureaucrat c("Bouch3aib", 1);
 	try {
 		Bureaucrat d("Bouch3aib", 0); // it will throw an exception
+		Bureaucrat e = d; // it will not be executed
 	} catch (std::exception & e) {
 		std::cout << e.what() << std::endl;
 	}
