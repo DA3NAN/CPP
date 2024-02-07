@@ -6,13 +6,14 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:22:34 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:23:03 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:51:38 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
+# include <ctime>
 # include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm {

@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:49:02 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 19:29:14 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:37:09 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ class AForm {
 		AForm & operator=(AForm const & src);
 		std::string getName() const;
 		bool getSigned() const;
-		int getsignGrade() const;
-		int getexecuteGrade() const;
+		int getSignGrade() const;
+		int getExecuteGrade() const;
 		void beSigned(Bureaucrat const & b);
 		virtual void execute(Bureaucrat const & executor) const = 0;
 		class GradeTooHighException: public std::exception {

@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 19:19:30 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 19:23:11 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 16:09:41 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ class Intern
 			public:
 				const char *what() const throw();
 		};
+		AForm *makeShrubberyCreationForm(std::string const name, std::string const &target);
+		AForm *makePresidentialPardonForm(std::string const name, std::string const &target);
+		AForm *makeRobotomyRequestForm(std::string const name, std::string const &target);
 };
 
 #endif

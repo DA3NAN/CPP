@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:42:10 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 15:48:59 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:32:31 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Form::Form(std::string const &name, int signGrade, int executeGrade) : _name(nam
 		throw Form::GradeTooLowException();
 }
 
-Form::Form(Form const & src) : _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _executeGrade(src._executeGrade) {}
+Form::Form(Form const & src) : _name(src.getName()), _signed(src.getSigned()), _signGrade(src.getSignGrade()), _executeGrade(src.getExecuteGrade()) {}
 
 Form::~Form() {}
 

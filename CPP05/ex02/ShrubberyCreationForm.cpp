@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:04:22 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:39:54 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:34:11 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	AForm::execute(executor);
 	std::ofstream file;
 	file.open(_target + "_shrubbery");
-	file << "      /\\      " << std::endl;
-	file << "     /  \\     " << std::endl;
+	file << "      /\\     " << std::endl;
+	file << "     /  \\    " << std::endl;
 	file << "    /    \\   " << std::endl;
 	file << "   /      \\  " << std::endl;
-	file << "  /________\\  " << std::endl;
+	file << "  /________\\ " << std::endl;
 	file << "      ||      " << std::endl;
 	file << "      ||      " << std::endl;
 	file << "      ||      " << std::endl;

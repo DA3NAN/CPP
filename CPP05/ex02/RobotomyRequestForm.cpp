@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:23:46 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:36:05 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:56:22 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const &
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	AForm::execute(executor);
-	std::cout << "****** Hehehe Noise :> ******" << std::endl;
+	std::cout << "****** Hehehe Noiiiise :> ^*^*^*" << std::endl;
+
+	srand(static_cast<unsigned int>(time(0)));
+
 	if (rand() % 2)
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
-		std::cout << _target << " robotomization failed" << std::endl;
+		std::cout << "Robotomization failed" << std::endl;
 }

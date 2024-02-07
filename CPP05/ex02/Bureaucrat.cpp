@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 16:39:18 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:31:15 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:12:32 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(std::string const &name, int grade): _name(name) {
 	_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & src) : _name(src._name), _grade(src._grade) {}
+Bureaucrat::Bureaucrat(Bureaucrat const & src) : _name(src.getName()), _grade(src.getGrade()) {}
 
 Bureaucrat::~Bureaucrat() {}
 

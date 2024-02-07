@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:57:19 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/06 17:10:33 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:44:09 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ AForm::AForm(std::string const &name, int signGrade, int executeGrade) : _name(n
 		throw AForm::GradeTooLowException();
 }
 
-AForm::AForm(AForm const & src) : _name(src._name), _signed(src._signed), _signGrade(src._signGrade), _executeGrade(src._executeGrade) {}
+AForm::AForm(AForm const & src) : _name(src.getName()), _signed(src.getSigned()), _signGrade(src.getSignGrade()), _executeGrade(src.getExecuteGrade()) {}
 
 AForm::~AForm() {}
 
@@ -39,11 +39,11 @@ bool AForm::getSigned() const {
 	return _signed;
 }
 
-int AForm::getsignGrade() const {
+int AForm::getSignGrade() const {
 	return _signGrade;
 }
 
-int AForm::getexecuteGrade() const {
+int AForm::getExecuteGrade() const {
 	return _executeGrade;
 }
 
@@ -73,6 +73,6 @@ const char* AForm::FormNotSignedException::what() const throw() {
 }
 
 std::ostream & operator<<(std::ostream & os, AForm const & f) {
-	os << f.getName() << " form is " << (f.getSigned() ? "signed" : "not signed") << " and requires grade " << f.getsignGrade() << " to be signed and grade " << f.getexecuteGrade() << " to be executed";
+	os << f.getName() << " form is " << (f.getSigned() ? "signed" : "not signed") << ", " << f.getSignGrade() << " to be signed, and " << f.getExecuteGrade() << " to be executed";
 	return os;
 }
