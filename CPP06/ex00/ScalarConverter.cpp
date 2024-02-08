@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/08 19:09:43 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:14:39 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,99 @@ void ScalarConverter::convert(std::string const & str) {
 			return;
 
 		try {
+			std::cout << "char: ";
 			char c = static_cast<char>(std::stoi(str));
 			printChar(c);
+		} catch(std::out_of_range) {
+			std::cout << "impossible" << std::endl;
 		} catch (std::exception & e) {
-			std::cout << "char: " << e.what() << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 
-		// try {
-		// 	int i = std::stoi(str);
-		// 	printInt(i);
-		// } catch (std::exception & e) {
-		// 	std::cout << "int: " << e.what() << std::endl;
-		// }
+		try {
+			std::cout << "int: ";
+			int i = std::stoi(str);
+			printInt(i);
+		} catch (std::out_of_range) {
+			std::cout << "impossible" << std::endl;
+		} catch (std::exception & e) {
+			std::cout << e.what() << std::endl;
+		}
 
-		// try {
-		// 	float f = std::stof(str);
-		// 	printFloat(f);
-		// } catch (std::exception & e) {
-		// 	std::cout << "float: " << e.what() << std::endl;
-		// }
+		try {
+			std::cout << "float: ";
+			float f = std::stod(str);
+			printFloat(f);
+		} catch(std::out_of_range) {
+			std::cout << "impossible" << std::endl;
 
-		// try {
-		// 	double d = std::stod(str);
-		// 	printDouble(d);
-		// } catch (std::exception & e) {
-		// 	std::cout << "double: " << e.what() << std::endl;
-		// }
+		} catch (std::exception & e) {
+			std::cout << e.what() << std::endl;
+		}
+
+		try {
+			std::cout << "double: ";
+			double d = std::stod(str);
+			printDouble(d);
+		} catch(std::out_of_range) {
+			std::cout << "impossible" << std::endl;
+
+		} catch (std::exception & e) {
+			std::cout << e.what() << std::endl;
+		}
 	} catch (std::exception & e) {
 		std::cout << e.what() << std::endl;
 	}
+}
+
+void printChar(char c) {
+	if (c > 127 || c < 0)
+		throw ScalarConverter::ImpossibleException();
+	else if (!isprint(c))
+		throw ScalarConverter::NonDisplayableException();
+	else
+		std::cout << "'" << c << "'" << std::endl;
+}
+
+void printInt(int i) {
+	std::cout << i << std::endl;
+}
+
+void printFloat(float f) {
+	if (f - static_cast<int>(f) == 0)
+		std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+	else
+		std::cout << f << "f" << std::endl;
+}
+
+void printDouble(double d) {
+	if (d - static_cast<int>(d) == 0)
+		std::cout << std::fixed << std::setprecision(1) << d << std::endl;
+	else
+		std::cout << d << std::endl;
+}
+
+bool specialCase(std::string const & str) {
+	if (str.length() == 1 && !isdigit(str[0])) {
+		std::cout << "char: '" << str[0] << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+		std::cout << "float: " << static_cast<float>(str[0]) << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
+		return true;
+	} else if (str == "-inff" || str == "+inff" || str == "nanf") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << std::endl;
+		std::cout << "double: " << str.substr(0, str.length() - 1) << std::endl;
+		return true;
+	} else if (str == "-inf" || str == "+inf" || str == "nan") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << "f" << std::endl;
+		std::cout << "double: " << str << std::endl;
+		return true;
+	}
+	return false;
 }
 
 bool isValid(std::string const & str) {
@@ -89,33 +153,6 @@ bool isValid(std::string const & str) {
 			else
 				return false;
 		}
-		return true;
-	}
-	return false;
-}
-
-void printChar(char c) {
-	if (c > 127 || c < 0)
-		throw ScalarConverter::ImpossibleException();
-	else if (!isprint(c))
-		throw ScalarConverter::NonDisplayableException();
-	else
-		std::cout << "char: '" << c << "'" << std::endl;
-}
-
-bool specialCase(std::string const & str) {
-	if (str == "-inff" || str == "+inff" || str == "nanf") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << str << std::endl;
-		std::cout << "double: " << str.substr(0, str.length() - 1) << std::endl;
-		return true;
-	}
-	if (str == "-inf" || str == "+inf" || str == "nan") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << str << "f" << std::endl;
-		std::cout << "double: " << str << std::endl;
 		return true;
 	}
 	return false;
