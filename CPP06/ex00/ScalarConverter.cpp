@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/08 23:14:39 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:08:55 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ bool specialCase(std::string const & str) {
 }
 
 bool isValid(std::string const & str) {
+	int	pointCount = 0;
+
 	if (str.length() == 1 && !isdigit(str[0]))
 		return true;
 	if (str == "-inff" || str == "+inff" || str == "nanf")
@@ -141,10 +143,18 @@ bool isValid(std::string const & str) {
 		size_t i = 0;
 		if (str[i] == '-' || str[i] == '+')
 			i++;
+
+		for (size_t j = i; j < str.length(); j++) {
+			if (str[j] == '.')
+				pointCount++;
+		}
+		if (pointCount > 1)
+			return false;
+
 		for (; i < str.length(); i++) {
 			if (isdigit(str[i])
 				|| (str[i] == '.'
-					&& str[i + 1] && str[i + 1] != '.'
+					&& str[i - 1] && isdigit(str[i - 1])
 					&& str[i + 1] != 'f'
 					&& i != str.length() - 1)
 				|| (str[i] == 'f' && i == str.length() - 1)
