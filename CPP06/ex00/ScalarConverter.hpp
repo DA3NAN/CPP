@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:54 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/08 21:59:35 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:41:38 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
 # include <iomanip>
 # include <limits>
 # include <cmath>
@@ -50,5 +51,6 @@ void printInt(int i);
 void printFloat(float f);
 void printDouble(double d);
 bool specialCase(std::string const & str);
+bool isOctalLiteral(const std::string& str);
 
 #endif

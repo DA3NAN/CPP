@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 15:50:34 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/09 15:52:52 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:29:43 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 class Base {
 	public:
-		virtual ~Base() {};
+		virtual ~Base();
 };
 
 class A : public Base {};

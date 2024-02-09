@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/09 15:08:55 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:44:53 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ bool isValid(std::string const & str) {
 		return true;
 	if (str == "-inf" || str == "+inf" || str == "nan")
 		return true;
+	if (isOctalLiteral(str))
+		return false;
 	if (str.length() >= 1 && (isdigit(str[0]) || str[0] == '-' || str[0] == '+')) {
 		size_t i = 0;
 		if (str[i] == '-' || str[i] == '+')
@@ -166,6 +168,18 @@ bool isValid(std::string const & str) {
 		return true;
 	}
 	return false;
+}
+
+bool isOctalLiteral(const std::string& str) {
+    if (str.empty() || str[0] != '0' || (str.length() == 1 && str[0] == '0')) {
+        return false;
+    }
+
+    std::istringstream iss(str);
+    int num;
+    iss >> std::oct >> num;
+
+    return !iss.fail() && iss.eof();
 }
 
 const char * ScalarConverter::NotValidException::what() const throw() {

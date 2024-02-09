@@ -1,25 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 16:19:03 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/09 19:02:22 by aait-mal         ###   ########.fr       */
+/*   Created: 2024/02/09 18:28:20 by aait-mal          #+#    #+#             */
+/*   Updated: 2024/02/09 18:28:54 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Identify.hpp"
+#include "Base.hpp"
 
-int main() {
-	Base *p = generate();
-
-	identify(p);
-	identify(*p);
-
-	if (p)
-		delete p;
-
-	return (0);
-}
+Base::~Base() {}
