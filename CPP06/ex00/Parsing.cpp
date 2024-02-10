@@ -6,7 +6,7 @@
 /*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:53:49 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/10 00:33:56 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/10 14:30:06 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ bool isValid(std::string const & str) {
 
 	if (str.length() == 1 && !isdigit(str[0]))
 		return true;
-	if (str == "-inff" || str == "+inff" || str == "nanf")
-		return true;
-	if (str == "-inf" || str == "+inf" || str == "nan")
+	if (str == "-inff" || str == "+inff" || str == "nanf"
+		|| str == "-inf" || str == "+inf" || str == "nan")
 		return true;
 	if (isOctalLiteral(str))
 		return false;
@@ -86,3 +85,10 @@ bool isOctalLiteral(const std::string& str) {
 
     return !iss.fail() && iss.eof();
 }
+
+void trimLastF(std::string& str) {
+    if (!str.empty() && str[str.length() - 1] == 'f') {
+        str.erase(str.length() - 1);
+    }
+}
+

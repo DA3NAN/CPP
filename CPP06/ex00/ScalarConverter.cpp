@@ -6,7 +6,7 @@
 /*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/10 00:49:57 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/10 14:25:55 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ScalarConverter::convert(std::string const & str) {
 
 		try {
 			std::cout << "char: ";
-			char c = static_cast<char>(std::atoi(str.c_str()));
+			char c = stringToChar(str);
 			printChar(c);
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
@@ -73,14 +73,7 @@ void ScalarConverter::convert(std::string const & str) {
 }
 
 void printChar(char c) {
-	unsigned char uc = static_cast<unsigned char>(c);
-
-	if (uc > 127)
-		throw std::runtime_error("impossible");
-	else if (!isprint(uc))
-		throw std::runtime_error("Non displayable");
-	else
-		std::cout << "'" << uc << "'" << std::endl;
+	std::cout << "'" << c << "'" << std::endl;
 }
 
 void printInt(int i) {

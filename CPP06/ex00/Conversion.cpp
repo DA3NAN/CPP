@@ -6,11 +6,23 @@
 /*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 23:57:20 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/10 00:55:20 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/10 14:28:00 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Conversion.hpp"
+
+char stringToChar(const std::string& str) {
+    int result = stringToInt(str);
+
+    if (result < CHAR_MIN || result > CHAR_MAX) {
+        throw std::runtime_error("impossible");
+    } else if (!isprint(result)) {
+        throw std::runtime_error("Non displayable");
+    }
+
+    return static_cast<char>(result);
+}
 
 int stringToInt(const std::string& str) {
     char* endptr;
@@ -25,15 +37,12 @@ int stringToInt(const std::string& str) {
 
 float stringToFloat(const std::string& str) {
     char* endptr;
-	std::string trimmedString = str;
+    std::string str2 = str;
 
-	if (trimmedString[trimmedString.length() - 1] == 'f') {
-		trimmedString = trimmedString.substr(0, trimmedString.length() - 1);
-	}
+	trimLastF(str2);
+    float result = strtof(str2.c_str(), &endptr);
 
-    float result = strtof(trimmedString.c_str(), &endptr);
-
-    if (endptr == trimmedString.c_str() || *endptr != '\0') {
+    if (endptr == str2.c_str() || *endptr != '\0') {
         throw std::runtime_error("impossible");
     }
 
@@ -46,15 +55,12 @@ float stringToFloat(const std::string& str) {
 
 double stringToDouble(const std::string& str) {
     char* endptr;
-	std::string trimmedString = str;
+    std::string str2 = str;
 
-	if (trimmedString[trimmedString.length() - 1] == 'f') {
-		trimmedString = trimmedString.substr(0, trimmedString.length() - 1);
-	}
+	trimLastF(str2);
+    double result = strtod(str2.c_str(), &endptr);
 
-    double result = strtod(trimmedString.c_str(), &endptr);
-
-    if (endptr == trimmedString.c_str() || *endptr != '\0') {
+    if (endptr == str2.c_str() || *endptr != '\0') {
         throw std::runtime_error("impossible");
     }
 
