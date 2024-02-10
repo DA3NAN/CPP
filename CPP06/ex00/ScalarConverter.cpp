@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:02:32 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/09 18:44:53 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/10 00:49:57 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include "Parsing.hpp"
+#include "Conversion.hpp"
 
 ScalarConverter::ScalarConverter() {}
 
@@ -28,7 +30,7 @@ ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src) {
 void ScalarConverter::convert(std::string const & str) {
 	try {
 		if (!isValid(str)) {
-			throw NotValidException();
+			throw std::runtime_error("Not a valid input");
 		}
 
 		if (specialCase(str))
@@ -36,42 +38,32 @@ void ScalarConverter::convert(std::string const & str) {
 
 		try {
 			std::cout << "char: ";
-			char c = static_cast<char>(std::stoi(str));
+			char c = static_cast<char>(std::atoi(str.c_str()));
 			printChar(c);
-		} catch(std::out_of_range) {
-			std::cout << "impossible" << std::endl;
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
 
 		try {
 			std::cout << "int: ";
-			int i = std::stoi(str);
+			int i = stringToInt(str);
 			printInt(i);
-		} catch (std::out_of_range) {
-			std::cout << "impossible" << std::endl;
-		} catch (std::exception & e) {
+		}  catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
 
 		try {
 			std::cout << "float: ";
-			float f = std::stod(str);
+			float f = stringToFloat(str);
 			printFloat(f);
-		} catch(std::out_of_range) {
-			std::cout << "impossible" << std::endl;
-
-		} catch (std::exception & e) {
+		}catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
 
 		try {
 			std::cout << "double: ";
-			double d = std::stod(str);
+			double d = stringToDouble(str);
 			printDouble(d);
-		} catch(std::out_of_range) {
-			std::cout << "impossible" << std::endl;
-
 		} catch (std::exception & e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -81,12 +73,14 @@ void ScalarConverter::convert(std::string const & str) {
 }
 
 void printChar(char c) {
-	if (c > 127 || c < 0)
-		throw ScalarConverter::ImpossibleException();
-	else if (!isprint(c))
-		throw ScalarConverter::NonDisplayableException();
+	unsigned char uc = static_cast<unsigned char>(c);
+
+	if (uc > 127)
+		throw std::runtime_error("impossible");
+	else if (!isprint(uc))
+		throw std::runtime_error("Non displayable");
 	else
-		std::cout << "'" << c << "'" << std::endl;
+		std::cout << "'" << uc << "'" << std::endl;
 }
 
 void printInt(int i) {
@@ -107,89 +101,3 @@ void printDouble(double d) {
 		std::cout << d << std::endl;
 }
 
-bool specialCase(std::string const & str) {
-	if (str.length() == 1 && !isdigit(str[0])) {
-		std::cout << "char: '" << str[0] << "'" << std::endl;
-		std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
-		std::cout << "float: " << static_cast<float>(str[0]) << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
-		return true;
-	} else if (str == "-inff" || str == "+inff" || str == "nanf") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << str << std::endl;
-		std::cout << "double: " << str.substr(0, str.length() - 1) << std::endl;
-		return true;
-	} else if (str == "-inf" || str == "+inf" || str == "nan") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: " << str << "f" << std::endl;
-		std::cout << "double: " << str << std::endl;
-		return true;
-	}
-	return false;
-}
-
-bool isValid(std::string const & str) {
-	int	pointCount = 0;
-
-	if (str.length() == 1 && !isdigit(str[0]))
-		return true;
-	if (str == "-inff" || str == "+inff" || str == "nanf")
-		return true;
-	if (str == "-inf" || str == "+inf" || str == "nan")
-		return true;
-	if (isOctalLiteral(str))
-		return false;
-	if (str.length() >= 1 && (isdigit(str[0]) || str[0] == '-' || str[0] == '+')) {
-		size_t i = 0;
-		if (str[i] == '-' || str[i] == '+')
-			i++;
-
-		for (size_t j = i; j < str.length(); j++) {
-			if (str[j] == '.')
-				pointCount++;
-		}
-		if (pointCount > 1)
-			return false;
-
-		for (; i < str.length(); i++) {
-			if (isdigit(str[i])
-				|| (str[i] == '.'
-					&& str[i - 1] && isdigit(str[i - 1])
-					&& str[i + 1] != 'f'
-					&& i != str.length() - 1)
-				|| (str[i] == 'f' && i == str.length() - 1)
-				)
-				continue;
-			else
-				return false;
-		}
-		return true;
-	}
-	return false;
-}
-
-bool isOctalLiteral(const std::string& str) {
-    if (str.empty() || str[0] != '0' || (str.length() == 1 && str[0] == '0')) {
-        return false;
-    }
-
-    std::istringstream iss(str);
-    int num;
-    iss >> std::oct >> num;
-
-    return !iss.fail() && iss.eof();
-}
-
-const char * ScalarConverter::NotValidException::what() const throw() {
-	return "Not a valid input";
-}
-
-const char * ScalarConverter::ImpossibleException::what() const throw() {
-	return "impossible";
-}
-
-const char * ScalarConverter::NonDisplayableException::what() const throw() {
-	return "Non displayable";
-}
