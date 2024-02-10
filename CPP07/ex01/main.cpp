@@ -5,29 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 17:10:44 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/10 19:03:38 by aait-mal         ###   ########.fr       */
+/*   Created: 2024/02/10 19:07:48 by aait-mal          #+#    #+#             */
+/*   Updated: 2024/02/10 19:17:44 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
+#include "iter.hpp"
+
+void upper(std::string &s) {
+	for (size_t i = 0; i < s.length(); i++) {
+		s[i] = std::toupper(s[i]);
+	}
+}
 
 int main(void) {
-	int a = 2;
-	int b = 3;
+	int arr[] = {1, 2, 3, 4, 5};
+	::iter(arr, 5, ::increment);
+	::iter(arr, 5, ::print);
 
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	std::string arr2[] = {"Hello", "World", "42", "C++", "is", "fun"};
+	::iter(arr2, 6, upper);
+	::iter(arr2, 6, ::print);
 
 	return 0;
 }

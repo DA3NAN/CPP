@@ -5,29 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 17:10:44 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/10 19:03:38 by aait-mal         ###   ########.fr       */
+/*   Created: 2024/02/10 19:35:34 by aait-mal          #+#    #+#             */
+/*   Updated: 2024/02/10 19:35:57 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
+#include "Array.hpp"
 
-int main(void) {
-	int a = 2;
-	int b = 3;
-
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-
-	return 0;
+int main()
+{
+	Array<int> arr(5);
+	arr[0] = 1;
+	arr[1] = 2;
+	arr[2] = 3;
+	arr[3] = 4;
+	arr[4] = 5;
+	try
+	{
+		for (unsigned int i = 0; i < 6; i++)
+			std::cout << arr[i] << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
