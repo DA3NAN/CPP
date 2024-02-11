@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <stdint.h>
 
 struct Data {
 	std::string s1;
