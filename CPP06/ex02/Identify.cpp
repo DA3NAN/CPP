@@ -13,7 +13,7 @@
 #include "Identify.hpp"
 
 Base *generate(void) {
-	srand(time(0));
+	srand(std::time(0));
 	int i = rand() % 3;
 	if (i == 0)
 		return new A();
