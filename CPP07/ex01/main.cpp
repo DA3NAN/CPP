@@ -23,9 +23,9 @@ int main(void) {
 	::iter(arr, 5, ::increment);
 	::iter(arr, 5, ::print);
 
-	std::string arr2[] = {"Hello", "World", "42", "C++", "is", "fun"};
-	::iter(arr2, 6, upper);
-	::iter(arr2, 6, ::print);
+	std::string arr2[] = {"Hello", "World", "Fluff", "Dash"};
+	::iter(arr2, 4, upper);
+	::iter(arr2, 4, ::print);
 
 	return 0;
 }
