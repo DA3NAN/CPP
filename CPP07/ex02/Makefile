@@ -6,13 +6,13 @@
 #    By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 19:19:54 by aait-mal          #+#    #+#              #
-#    Updated: 2024/02/10 19:35:11 by aait-mal         ###   ########.fr        #
+#    Updated: 2024/02/12 15:31:49 by aait-mal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Array
 SRC = $(wildcard *.cpp)
-HEADER = $(wildcard *.hpp *.h)
+HEADER = $(wildcard *.hpp *.h *.tpp)
 
 OBJ = $(SRC:.cpp=.o)
 CC = c++

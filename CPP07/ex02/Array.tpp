@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:26:38 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/10 19:43:35 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:32:30 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ template <typename T>
 Array<T>::Array() : _arr(NULL), _size(0) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _arr(new T[n]), _size(n) {}
+Array<T>::Array(unsigned int n) : _arr(new T[n]), _size(n) {
+    for (unsigned int i = 0; i < _size; i++)
+        _arr[i] = 0;
+}
 
 template <typename T>
-Array<T>::Array(Array const &other) : _arr(new T[other._size]), _size(other._size)
+Array<T>::Array(Array const &src) : _arr(new T[src._size]), _size(src._size)
 {
     for (unsigned int i = 0; i < _size; i++)
-        _arr[i] = other._arr[i];
+        _arr[i] = src._arr[i];
 }
 
 template <typename T>
@@ -34,16 +37,16 @@ Array<T>::~Array()
 }
 
 template <typename T>
-Array<T> &Array<T>::operator=(Array const &other)
+Array<T> &Array<T>::operator=(Array const &src)
 {
-    if (this != &other)
+    if (this != &src)
     {
         if (_arr)
             delete[] _arr;
-        _arr = new T[other._size];
-        _size = other._size;
+        _arr = new T[src._size];
+        _size = src._size;
         for (unsigned int i = 0; i < _size; i++)
-            _arr[i] = other._arr[i];
+            _arr[i] = src._arr[i];
     }
     return *this;
 }
@@ -51,7 +54,7 @@ Array<T> &Array<T>::operator=(Array const &other)
 template <typename T>
 T &Array<T>::operator[](unsigned int i)
 {
-    if (i >= _size)
+    if (i >= _size || i < 0)
         throw Array<T>::OutOfLimits();
     return _arr[i];
 }
