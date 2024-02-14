@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:59:45 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/13 20:01:25 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:36:17 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,52 +18,49 @@
 
 template <typename T>
 class MutantStack : public std::stack<T> {
-	private:
-		std::stack<T> _stack;
 	public:
-		MutantStack() : _stack() {}
-		MutantStack(MutantStack const & stack) {
-			*this = stack;
+		MutantStack() {}
+		MutantStack(MutantStack const & src) {
+			*this = src;
 		}
-		MutantStack & operator=(MutantStack const & stack) {
-			if (this != &stack) {
-				if (_stack.size() > 0)
-					_stack.clear();
-				if (stack._stack.size() > 0) {
-					std::stack<T> tmp = stack._stack;
-					while (!tmp.empty()) {
-						_stack.push(tmp.top());
-						tmp.pop();
-					}
-				}
-			}
+		MutantStack & operator=(MutantStack const & src) {
+			if (this != &src)
+				std::stack<T>::operator=(src);
 			return *this;
 		}
-		~MutantStack() {
-			if (_stack.size() > 0)
-				_stack.clear();
-		}
-		void push(T value) {
-			_stack.push(value);
-		}
-		void pop() {
-			_stack.pop();
-		}
-		T & top() {
-			return _stack.top();
-		}
-		size_t size() {
-			return _stack.size();
-		}
-		bool empty() {
-			return _stack.empty();
-		}
+		~MutantStack() {}
+		
 		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
+
 		iterator begin() {
-			return _stack.c.begin();
+			return MutantStack<T>::c.begin();
 		}
 		iterator end() {
-			return _stack.c.end();
+			return MutantStack<T>::c.end();
+		}
+
+		const_iterator begin() const {
+			return MutantStack<T>::c.begin();
+		}
+		const_iterator end() const {
+			return MutantStack<T>::c.end();
+		}
+
+		reverse_iterator rbegin() {
+			return MutantStack<T>::c.rbegin();
+		}
+		reverse_iterator rend() {
+			return MutantStack<T>::c.rend();
+		}
+
+		const_reverse_iterator rbegin() const {
+			return MutantStack<T>::c.rbegin();
+		}
+		const_reverse_iterator rend() const {
+			return MutantStack<T>::c.rend();
 		}
 };
 
