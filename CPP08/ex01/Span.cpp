@@ -49,11 +49,11 @@ void Span::addNumber(int n) {
 		throw std::runtime_error("Cannot add more numbers to the container");
 }
 
-void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
 	if (_v.size() + std::distance(begin, end) <= _n)
 		_v.insert(_v.end(), begin, end);
 	else
-		throw std::runtime_error("Cannot add more numbers to the container");
+		throw std::runtime_error("Cannot add All the numbers to the container");
 }
 
 int Span::shortestSpan() {

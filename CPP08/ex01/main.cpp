@@ -15,7 +15,7 @@
 int main() {
 	Span sp = Span(5);
 	Span sp2 = Span(10);
-	Span huge = Span(15000);
+	Span huge = Span(20000);
 
 	try {
 		sp.addNumber(6);
@@ -42,12 +42,12 @@ int main() {
 
 	std::cout << std::endl;
 	std::vector<int> v;
-	for (int i = 0; i < 15000; i++) {
+	for (int i = 0; i < 20000; i++) {
 		v.push_back(i);
 	}
 
 	try {
-		huge.addNumbers(v.begin(), v.end());
+		huge.addNumber(v.begin(), v.end());
 		std::cout << huge.shortestSpan() << std::endl;
 		std::cout << huge.longestSpan() << std::endl;
 	} catch (std::exception & e) {

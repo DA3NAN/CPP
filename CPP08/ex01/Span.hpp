@@ -29,7 +29,7 @@ class Span
 		Span & operator=(Span const & span);
 		~Span();
 		void addNumber(int n);
-		void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+		void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 		int shortestSpan();
 		int longestSpan();
 };
