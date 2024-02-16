@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:31:55 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/15 19:36:37 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:22:29 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ int main(int argc, char **argv) {
 	}
 
 	BitcoinExchange exchange(dataFile, ',');
-	BitcoinExchange input(inputFile, '|');
 	dataFile.close();
-	inputFile.close();
 
-	input.printMap();
+	TreatInput(inputFile, exchange, '|');
 
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 18:46:09 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/15 19:36:14 by aait-mal         ###   ########.fr       */
+/*   Created: 2024/02/16 18:41:31 by adnane            #+#    #+#             */
+/*   Updated: 2024/02/16 20:12:59 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,93 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(std::ifstream & data, char delim) {
+BitcoinExchange::BitcoinExchange(std::ifstream &file, char separator) {
 	std::string line;
-	int i = 0;
+	std::string date;
+	double rate;
 
-	while (std::getline(data, line)) {
-		if (i == 0) {
-			i++;
-			continue;
-		}
-		_bitcoin.insert(split(line, delim));
-		i++;
+	while (std::getline(file, line)) {
+		std::stringstream ss(line);
+		std::getline(ss, date, separator);
+		ss >> rate;
+		_data.insert(std::pair<std::string, double>(date, rate));
 	}
 }
 
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & exchange) {
-	*this = exchange;
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) {
+	*this = src;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &src) {
+	if (this != &src)
+		_data = src._data;
+	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange & BitcoinExchange::operator=(BitcoinExchange const & exchange) {
-	if (this != &exchange) {
-		_bitcoin = exchange._bitcoin;
-	}
-	return (*this);
+double BitcoinExchange::getRate(std::string date) {
+    std::multimap<std::string, double>::iterator it = _data.lower_bound(date);
+
+    if (it != _data.end() && it->first == date) {
+        return it->second;
+    }
+    if (it == _data.begin()) {
+        return HUGE_VAL;
+    }
+    --it;
+
+    return it->second;
 }
 
-double BitcoinExchange::getRate(std::string const & date) const {
-	std::map<std::string, double>::const_iterator it = _bitcoin.find(date);
-	if (it != _bitcoin.end()) {
-		return (it->second);
+void BitcoinExchange::printMap() {
+	std::multimap<std::string, double>::iterator it = _data.begin();
+	while (it != _data.end()) {
+		std::cout << it->first << " : " << it->second << std::endl;
+		it++;
 	}
-	return (0);
 }
 
-double BitcoinExchange::convert(std::string const & date, double amount) const {
-	double rate = getRate(date);
-	if (rate > 0) {
-		return (amount * rate);
-	}
-	return (0);
-}
+void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator) {
+    std::string line;
+	int skip = 0;
 
-void BitcoinExchange::printMap() const {
-    std::map<std::string, double>::const_iterator it = _bitcoin.begin();
-    while (it != _bitcoin.end()) {
-        std::cout << it->first << "," << std::fixed << std::setprecision(2) << it->second << std::endl;
-        it++;
+    while (std::getline(file, line)) {
+		if (skip == 0) {
+			skip++;
+			continue;
+		}
+		removeWhitespace(line);
+        std::istringstream iss(line);
+        std::string date;
+		std::string valueStr;
+        double value;
+
+        std::getline(iss, date, separator);
+		std::getline(iss, valueStr);
+		std::stringstream valueStream(valueStr);
+
+		if (!isValidDate(date)) {
+			std::cout << "Error: bad input => " << date << std::endl;
+            continue;
+        } else if (!(valueStream >> value) || !valueStream.eof()) {
+            std::cout << "Error: not a valid number." << std::endl;
+            continue;
+        } else if (value < 0) {
+			std::cout << "Error: not a positive number." << std::endl;
+			continue;
+		} else if (value > INT_MAX) {
+			std::cout << "Error: too large number." << std::endl;
+			continue;
+		}
+
+        double rate = exchange.getRate(date);
+		if (rate == HUGE_VAL) {
+			std::cout << "Error: no data for date => " << date << std::endl;
+			continue;
+		}
+
+    	double result = value * rate;
+        std::cout << date << " => " << value << " = " << result << std::endl;
     }
 }
-
-std::pair<std::string, double> split(const std::string& line, char delim) {
-    std::pair<std::string, double> result;
-    std::string date;
-    std::string rateStr;
-    double rate;
-
-    std::istringstream ss(line);
-    std::getline(ss, date, delim);
-    std::getline(ss, rateStr);
-
-    std::istringstream(rateStr) >> rate;
-
-    result.first = date;
-    result.second = rate;
-
-    return result;
-}
-
