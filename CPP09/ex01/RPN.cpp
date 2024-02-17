@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:51:42 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 16:25:23 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:21:47 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void RPN::printStack() {
 }
 
 void RPN::printResult() {
-	std::cout << static_cast<int>(_stack.top()) << std::endl;
+	std::cout << _stack.top() << std::endl;
 }
 
 bool isNumber(const std::string &s) {
