@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:31:55 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/16 19:22:29 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:33:47 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ int main(int argc, char **argv) {
 		std::cerr << "Error: could not open input file." << std::endl;
 		return (1);
 	}
-
-	BitcoinExchange exchange(dataFile, ',');
-	dataFile.close();
-
-	TreatInput(inputFile, exchange, '|');
+	try {
+		BitcoinExchange exchange(dataFile, ',');
+		dataFile.close();
+		TreatInput(inputFile, exchange, '|');
+	} catch (std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		return (1);
+	}
 
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:41:31 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/17 02:58:32 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:37:44 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file, char separator) {
 	std::string line;
 	std::string date;
 	double rate;
+
+	 // Check if the file is empty
+    if (file.peek() == std::ifstream::traits_type::eof()) {
+        throw std::runtime_error("Error: Empty data csv file");
+    }
 
 	while (std::getline(file, line)) {
 		std::stringstream ss(line);
@@ -45,7 +50,7 @@ double BitcoinExchange::getRate(std::string date) {
     if (it != _data.end() && it->first == date) {
         return it->second;
     }
-    if (it == _data.begin()) {
+    if (it == _data.begin() || it == _data.end()) {
         return HUGE_VAL;
     }
     --it;
