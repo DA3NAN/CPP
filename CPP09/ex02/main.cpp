@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:48:27 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 19:51:10 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/18 15:41:17 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int main(int ac, char **av) {
 
 	try {
 		PmergeMe p(av[1]);
-		p.SortVector();
-		p.SortList();
-		p.printVector();
-		p.printList();
+		p.sort();
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return 1;

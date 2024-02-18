@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:02:44 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 19:50:50 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:43:50 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@
 # include <algorithm>
 # include <vector>
 # include <list>
+# include <climits>
+# include <ctime>
 
 class PmergeMe {
 	private:
 		std::vector<int> _v;
 		std::list<int> _l;
+		double _vectorTime;
+		double _listTime;
 	public:
 		PmergeMe();
 		PmergeMe(std::string const &input);
@@ -36,6 +40,16 @@ class PmergeMe {
 
 		void printVector() const;
 		void printList() const;
+
+		void sortThePairs(std::vector<std::pair<int, int> > &v_pairs);
+		void sortByFirst(std::vector<std::pair<int, int> > &v_pairs);
+
+		void createMainChainAndPend(std::vector<std::pair<int, int> > &v_pairs, std::vector<int> &mainChain, std::vector<int> &pend);
+
+		void indexPend(std::vector<int> &pend, std::vector<int> &pendIndexes);
+		void createJacobStal(std::vector<int> &pendIndexes, std::vector<int> &jacobStal);
+
+		void sort();
 };
 
 int stringToInt(const std::string& str);
