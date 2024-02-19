@@ -6,7 +6,7 @@
 /*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:02:44 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/18 21:43:50 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/19 16:00:34 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ class PmergeMe {
 
 		void indexPend(std::vector<int> &pend, std::vector<int> &pendIndexes);
 		void createJacobStal(std::vector<int> &pendIndexes, std::vector<int> &jacobStal);
+		std::vector<int> creatIndexCombinations(std::vector<int> &pendIndexes, std::vector<int> &jacobStal);
+		std::vector<int> createNewPend(std::vector<int> &pend, std::vector<int> &combination);
+		void binarySort(std::vector<int> &mainChain, std::vector<int> &newPend, int struggler);
 
 		void sort();
 };
