@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:44:18 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/19 16:04:03 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/19 20:03:42 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ PmergeMe::PmergeMe(std::string const &input) {
 	std::string token;
 	while (std::getline(ss, token, ' ')) {
 		_v.push_back(stringToInt(token));
-		_l.push_back(stringToInt(token));
+		_d.push_back(stringToInt(token));
 	}
 }
 
@@ -32,20 +32,18 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 	if (this != &other) {
 		_v = other._v;
-		_l = other._l;
+		_d = other._d;
 	}
 	return *this;
 }
 
 void PmergeMe::SortVector() {
 	std::vector<std::pair<int, int> > v_pairs;
-	std::vector<int> mainChain;
-	std::vector<int> pend;
-	std::vector<int> pendIndexes;
-	std::vector<int> jacobStal;
-	std::vector<int> combination;
-	std::vector<int> newPend;
+	std::vector<int> mainChain, pend, newPend;
+	std::vector<int> pendIndexes, jacobStal, combination;
 	int struggler = -1;
+	clock_t start = clock();
+	clock_t end;
 
 	if (_v.size() % 2 != 0) {
 		struggler = _v.back();
@@ -58,64 +56,25 @@ void PmergeMe::SortVector() {
 
 	sortThePairs(v_pairs);
 	sortByFirst(v_pairs);
-
 	createMainChainAndPend(v_pairs, mainChain, pend);
-
 	indexPend(pend, pendIndexes);
 	createJacobStal(pendIndexes, jacobStal);
-
-	//display jacobsStal
-	std::cout << "jacobStal:" << std::endl;
-	for (std::vector<int>::iterator it = jacobStal.begin(); it != jacobStal.end(); it++) {
-		std::cout << *it << std::endl;
-	}
-	std::cout << std::endl;
-
 	combination = creatIndexCombinations(pendIndexes, jacobStal);
-
-	// Print the resulting combination
-    std::cout << "Combination: ";
-    for (size_t k = 0; k < combination.size(); ++k) {
-        std::cout << combination[k] << " ";
-    }
-    std::cout << std::endl;
-
 	newPend = createNewPend(pend, combination);
-
-	//Print the new pend
-	std::cout << "New pend: ";
-	for (size_t k = 0; k < newPend.size(); ++k) {
-		std::cout << newPend[k] << " ";
-	}
-	std::cout << std::endl;
-
 	binarySort(mainChain, newPend, struggler);
 
-	(void)struggler;
+	end = clock();
+	_vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 }
 
 void PmergeMe::SortList() {
 	clock_t start = clock();
 	clock_t end;
 
-	_l.sort();
+	// _d.sort();
 
 	end = clock();
-	_listTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-}
-
-void PmergeMe::printVector() const {
-	for (std::vector<int>::const_iterator it = _v.begin(); it != _v.end(); it++) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
-
-void PmergeMe::printList() const {
-	for (std::list<int>::const_iterator it = _l.begin(); it != _l.end(); it++) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+	_dequeTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 }
 
 void PmergeMe::sortThePairs(std::vector<std::pair<int, int> > &v_pairs) {
@@ -133,7 +92,8 @@ void PmergeMe::sortByFirst(std::vector<std::pair<int, int> > &v_pairs) {
 	std::sort(v_pairs.begin(), v_pairs.end());
 }
 
-void PmergeMe::createMainChainAndPend(std::vector<std::pair<int, int> > &v_pairs, std::vector<int> &mainChain, std::vector<int> &pend) {
+void PmergeMe::createMainChainAndPend(std::vector<std::pair<int, int> > &v_pairs,
+							std::vector<int> &mainChain, std::vector<int> &pend) {
 	std::vector<std::pair<int, int> >::iterator it = v_pairs.begin();
 
 	while (it != v_pairs.end()) {
@@ -157,9 +117,6 @@ void PmergeMe::createJacobStal(std::vector<int>& pendIndexes, std::vector<int>& 
         return;
 
     int lastIndex = pendIndexes.back();
-    std::cout << "lastIndex: " << lastIndex << std::endl;
-    std::cout << "pendSize: " << pendIndexes.size() << std::endl;
-
     int prev = 0, curr = 0, next = 0;
 	int i = 0;
 
@@ -180,18 +137,15 @@ void PmergeMe::createJacobStal(std::vector<int>& pendIndexes, std::vector<int>& 
 }
 
 std::vector<int> PmergeMe::creatIndexCombinations(std::vector<int>& pendIndexes, std::vector<int>& jacobStal) {
-    std::vector<int> combination; // New combination vector
+    std::vector<int> combination;
 
     for (size_t i = 0; i < jacobStal.size(); ++i) {
         int currentNumber = jacobStal[i];
 
-        // Check if the current number is available in pendIndexes
         std::vector<int>::iterator it = std::find(pendIndexes.begin(), pendIndexes.end(), currentNumber);
         if (it != pendIndexes.end()) {
-            // Insert the number into the combination vector
             combination.push_back(currentNumber);
 
-            // Set the corresponding index in pendIndexes to -1
             *it = -1;
 
 			for (std::vector<int>::iterator pr = it; pr != pendIndexes.begin(); pr--) {
@@ -203,7 +157,6 @@ std::vector<int> PmergeMe::creatIndexCombinations(std::vector<int>& pendIndexes,
         }
     }
 
-    // Check the remaining numbers in pendIndexes
     for (size_t j = 0; j < pendIndexes.size(); ++j) {
         if (pendIndexes[j] != -1) {
             combination.push_back(pendIndexes[j]);
@@ -224,25 +177,31 @@ std::vector<int> PmergeMe::createNewPend(std::vector<int>& pend, std::vector<int
 }
 
 void PmergeMe::binarySort(std::vector<int>& mainChain, std::vector<int>& newPend, int struggler) {
-	// loop through the newPend vector and use lower Bound to find the position of the current element in the mainChain and then insert it
 	for (size_t i = 0; i < newPend.size(); ++i) {
 		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), newPend[i]);
 		mainChain.insert(it, newPend[i]);
 	}
-	// If there is a struggler, insert it in the mainChain
 	if (struggler != -1) {
 		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), struggler);
 		mainChain.insert(it, struggler);
 	}
-	_v = mainChain;
+	sortedVector = mainChain;
 }
 
 void PmergeMe::sort() {
+	size_t size = _v.size();
+
+	std::cout << "Before: ";
+	print(_v);
+
 	SortVector();
 	SortList();
 
-	printVector();
-	printList();
+	std::cout << "After: ";
+	print(sortedVector);
+
+	std::cout << "Time ro process a range of " << size << " elements with std::vector: " << _vectorTime << std::endl;
+	std::cout << "Time ro process a range of " << size << " elements with std::deque: " << _dequeTime << std::endl;
 }
 
 int stringToInt(const std::string& str) {

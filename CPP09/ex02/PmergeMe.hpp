@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:02:44 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/19 16:00:34 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/19 20:03:36 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 # include <sstream>
 # include <algorithm>
 # include <vector>
-# include <list>
+# include <deque>
 # include <climits>
 # include <ctime>
 
 class PmergeMe {
 	private:
-		std::vector<int> _v;
-		std::list<int> _l;
+		std::vector<int> _v, sortedVector;
+		std::deque<int> _d, sortedDeque;
 		double _vectorTime;
-		double _listTime;
+		double _dequeTime;
 	public:
 		PmergeMe();
 		PmergeMe(std::string const &input);
@@ -38,8 +38,13 @@ class PmergeMe {
 		void SortVector();
 		void SortList();
 
-		void printVector() const;
-		void printList() const;
+		template <typename T>
+		void print(T &container) {
+			for (typename T::iterator it = container.begin(); it != container.end(); it++) {
+				std::cout << *it << " ";
+			}
+			std::cout << std::endl;
+		}
 
 		void sortThePairs(std::vector<std::pair<int, int> > &v_pairs);
 		void sortByFirst(std::vector<std::pair<int, int> > &v_pairs);
