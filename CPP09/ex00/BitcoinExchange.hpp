@@ -6,7 +6,7 @@
 /*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:18:14 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 02:53:31 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/20 17:19:25 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 class BitcoinExchange {
 	private:
-		std::multimap<std::string, double> _data;
+		std::map<std::string, double> _data;
 	public:
 		BitcoinExchange();
 		BitcoinExchange(std::ifstream &file, char separator);

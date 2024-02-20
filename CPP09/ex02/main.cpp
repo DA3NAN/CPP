@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:48:27 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/19 20:12:58 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:49:57 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 int main(int ac, char **av) {
-	if (ac != 2) {
-		std::cerr << "Usage: ./PmergeMe \"string of numbers\"" << std::endl;
+	if (ac < 2) {
+		std::cerr << "Usage: ./PmergeMe [string of numbers]" << std::endl;
 		return 1;
 	}
 
 	try {
-		PmergeMe p(av[1]);
+		PmergeMe p(ac, av);
 		p.sort();
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;

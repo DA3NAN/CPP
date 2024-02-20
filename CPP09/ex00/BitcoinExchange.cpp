@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:41:31 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/17 15:37:44 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:15:37 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,20 @@ void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator) 
 
     while (std::getline(file, line)) {
 		if (skip == 0) {
-			skip++;
-			continue;
+			removeWhitespace(line);
+			std::istringstream iss(line);
+			std::string date;
+			std::string valueStr;
+
+			std::getline(iss, date, separator);
+			std::getline(iss, valueStr);
+			if (date == "date" && valueStr == "value") {
+				skip = 1;
+				continue;
+			} else {
+				std::cout << "Error: bad input file format" << std::endl;
+				return;
+			}
 		}
 		removeWhitespace(line);
         std::istringstream iss(line);

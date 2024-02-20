@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:47:19 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 16:21:40 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:07:05 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <cmath>
 
@@ -35,5 +36,6 @@ class RPN {
 };
 
 bool isNumber(const std::string &s);
+bool isEmptyOrWhitespace(const std::string& _input);
 
 #endif

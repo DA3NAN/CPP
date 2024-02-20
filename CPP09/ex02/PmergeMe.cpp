@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:44:18 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/19 20:03:42 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:40:00 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,41 @@
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(std::string const &input) {
-	std::stringstream ss(input);
-	std::string token;
-	while (std::getline(ss, token, ' ')) {
-		_v.push_back(stringToInt(token));
-		_d.push_back(stringToInt(token));
+PmergeMe::PmergeMe(int ac, char **av) {
+	_start = clock();
+	clock_t end;
+
+	for (int i = 1; i < ac; i++) {
+		std::string argument(av[i]);
+		size_t start = 0;
+		size_t end = argument.size();
+
+		// Skip leading whitespaces
+		while (start < end && std::isspace(argument[start]))
+			start++;
+
+		// Skip trailing whitespaces
+		while (end > start && std::isspace(argument[end - 1]))
+			end--;
+
+		std::string token;
+		std::stringstream ss(argument.substr(start, end - start));
+		while (ss >> token) {
+			_v.push_back(stringToInt(token));
+			_d.push_back(stringToInt(token));
+		}
 	}
+
+	if (_v.empty()) {
+		throw std::runtime_error("No data to process");
+	}
+
+	end = clock();
+	_dataTime = static_cast<double>(end - _start) / CLOCKS_PER_SEC * 1000;
 }
 
 PmergeMe::PmergeMe(PmergeMe const &other) {
+	_start = clock();
 	*this = other;
 }
 
@@ -42,7 +67,6 @@ void PmergeMe::SortVector() {
 	std::vector<int> mainChain, pend, newPend;
 	std::vector<int> pendIndexes, jacobStal, combination;
 	int struggler = -1;
-	clock_t start = clock();
 	clock_t end;
 
 	if (_v.size() % 2 != 0) {
@@ -64,129 +88,38 @@ void PmergeMe::SortVector() {
 	binarySort(mainChain, newPend, struggler);
 
 	end = clock();
-	_vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	_vectorTime = (double)(end - _start) / CLOCKS_PER_SEC * 1000000.0;
 }
 
-void PmergeMe::SortList() {
-	clock_t start = clock();
-	clock_t end;
+void PmergeMe::SortDeque() {
+    std::deque<std::pair<int, int> > d_pairs;
+    std::deque<int> mainChain, pend, newPend;
+    std::deque<int> pendIndexes, jacobStal, combination;
+    int struggler = -1;
+    clock_t end;
 
-	// _d.sort();
-
-	end = clock();
-	_dequeTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-}
-
-void PmergeMe::sortThePairs(std::vector<std::pair<int, int> > &v_pairs) {
-	std::vector<std::pair<int, int> >::iterator it = v_pairs.begin();
-
-	while (it != v_pairs.end()) {
-		if (it->first < it->second) {
-			std::swap(it->first, it->second);
-		}
-		it++;
-	}
-}
-
-void PmergeMe::sortByFirst(std::vector<std::pair<int, int> > &v_pairs) {
-	std::sort(v_pairs.begin(), v_pairs.end());
-}
-
-void PmergeMe::createMainChainAndPend(std::vector<std::pair<int, int> > &v_pairs,
-							std::vector<int> &mainChain, std::vector<int> &pend) {
-	std::vector<std::pair<int, int> >::iterator it = v_pairs.begin();
-
-	while (it != v_pairs.end()) {
-		mainChain.push_back(it->first);
-		pend.push_back(it->second);
-		it++;
-	}
-}
-
-void PmergeMe::indexPend(std::vector<int> &pend, std::vector<int> &pendIndexes) {
-	std::vector<int>::iterator it = pend.begin();
-
-	while (it != pend.end()) {
-		pendIndexes.push_back(it - pend.begin());
-		it++;
-	}
-}
-
-void PmergeMe::createJacobStal(std::vector<int>& pendIndexes, std::vector<int>& jacobStal) {
-    if (pendIndexes.empty())
-        return;
-
-    int lastIndex = pendIndexes.back();
-    int prev = 0, curr = 0, next = 0;
-	int i = 0;
-
-	while (next < lastIndex) {
-		if (i == 0) {
-			jacobStal.push_back(0);
-			next = 1;
-			i++;
-		} else {
-			next  = 2 * prev + curr;
-		}
-		if (next <= lastIndex) {
-			jacobStal.push_back(next);
-		}
-		prev = curr;
-		curr = next;
-	}
-}
-
-std::vector<int> PmergeMe::creatIndexCombinations(std::vector<int>& pendIndexes, std::vector<int>& jacobStal) {
-    std::vector<int> combination;
-
-    for (size_t i = 0; i < jacobStal.size(); ++i) {
-        int currentNumber = jacobStal[i];
-
-        std::vector<int>::iterator it = std::find(pendIndexes.begin(), pendIndexes.end(), currentNumber);
-        if (it != pendIndexes.end()) {
-            combination.push_back(currentNumber);
-
-            *it = -1;
-
-			for (std::vector<int>::iterator pr = it; pr != pendIndexes.begin(); pr--) {
-				if (*pr != -1) {
-					combination.push_back(*pr);
-					*pr = -1;
-				}
-			}
-        }
+    if (_d.size() % 2 != 0) {
+        struggler = _d.back();
+        _d.pop_back();
     }
 
-    for (size_t j = 0; j < pendIndexes.size(); ++j) {
-        if (pendIndexes[j] != -1) {
-            combination.push_back(pendIndexes[j]);
-        }
+    for (std::deque<int>::iterator it = _d.begin(); it != _d.end(); it += 2) {
+        d_pairs.push_back(std::make_pair(*it, *(it + 1)));
     }
 
-	return combination;
+    sortThePairsList(d_pairs);
+    sortByFirstList(d_pairs);
+    createMainChainAndPendList(d_pairs, mainChain, pend);
+    indexPendList(pend, pendIndexes);
+    createJacobStalList(pendIndexes, jacobStal);
+    combination = creatIndexCombinationsList(pendIndexes, jacobStal);
+    newPend = createNewPendList(pend, combination);
+    binarySortList(mainChain, newPend, struggler);
+
+    end = clock();
+	_dequeTime = (double)(end - _start) / CLOCKS_PER_SEC * 1000000.0;
 }
 
-std::vector<int> PmergeMe::createNewPend(std::vector<int>& pend, std::vector<int>& combination) {
-	std::vector<int> newPend;
-
-	for (size_t i = 0; i < combination.size(); ++i) {
-		newPend.push_back(pend[combination[i]]);
-	}
-
-	return newPend;
-}
-
-void PmergeMe::binarySort(std::vector<int>& mainChain, std::vector<int>& newPend, int struggler) {
-	for (size_t i = 0; i < newPend.size(); ++i) {
-		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), newPend[i]);
-		mainChain.insert(it, newPend[i]);
-	}
-	if (struggler != -1) {
-		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), struggler);
-		mainChain.insert(it, struggler);
-	}
-	sortedVector = mainChain;
-}
 
 void PmergeMe::sort() {
 	size_t size = _v.size();
@@ -194,17 +127,25 @@ void PmergeMe::sort() {
 	std::cout << "Before: ";
 	print(_v);
 
+	_start = clock();
 	SortVector();
-	SortList();
+	_vectorTime += _dataTime;
+
+	_start = clock();
+	SortDeque();
+	_dequeTime += _dataTime;
 
 	std::cout << "After: ";
-	print(sortedVector);
+	print(sortedDeque);
 
-	std::cout << "Time ro process a range of " << size << " elements with std::vector: " << _vectorTime << std::endl;
-	std::cout << "Time ro process a range of " << size << " elements with std::deque: " << _dequeTime << std::endl;
+	std::cout << "Time ro process a range of " << size << " elements with std::vector: " << _vectorTime << " us" << std::endl;
+	std::cout << "Time ro process a range of " << size << " elements with std::deque: " << _dequeTime << " us" << std::endl;
 }
 
 int stringToInt(const std::string& str) {
+	if (!isNumber(str)) {
+		throw std::runtime_error("Error");
+	}
     char* endptr;
     long int result = strtol(str.c_str(), &endptr, 10);
 
@@ -213,4 +154,16 @@ int stringToInt(const std::string& str) {
     }
 
     return static_cast<int>(result);
+}
+
+bool isNumber(const std::string& s) {
+    if (s.empty()) return false;
+
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        if (!isdigit(*it) && !(it == s.begin() && *it == '+' && s.size() > 1)) {
+            return false;
+        }
+    }
+
+    return true;
 }

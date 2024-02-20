@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:51:42 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 18:21:47 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:06:42 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void RPN::calculate() {
 	double num;
 
 	//check if input is empty or just whitespaces
-	if (_input.empty() || std::all_of(_input.begin(), _input.end(), isspace)) {
-		throw std::runtime_error("Empty input");
-	}
+	if (isEmptyOrWhitespace(_input)) {
+        throw std::runtime_error("Empty input or contains only whitespace");
+    }
 
 	while (iss >> token) {
 		if (token.length() == 1 && !isdigit(token[0])) {
@@ -90,6 +90,30 @@ void RPN::printResult() {
 	std::cout << _stack.top() << std::endl;
 }
 
-bool isNumber(const std::string &s) {
-	return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
+bool isNumber(const std::string& s) {
+    if (s.empty()) return false;
+
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it) {
+        if (!isdigit(*it)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool isEmptyOrWhitespace(const std::string& _input) {
+    // Check if the input is empty
+    if (_input.empty())
+        return true;
+
+    // Iterate through each character in the input
+    for (std::string::const_iterator it = _input.begin(); it != _input.end(); ++it) {
+        // If any character is not a whitespace character, return false
+        if (!std::isspace(*it))
+            return false;
+    }
+
+    // If all characters are whitespace, return true
+    return true;
 }
