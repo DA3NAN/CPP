@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:18:14 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/21 15:17:33 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:21:36 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ class BitcoinExchange {
 
 void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator);
 void removeWhitespace(std::string& str);
+int parseDateWhitespaces(const std::string& str);
+int parseValueWhitespaces(const std::string& str);
 bool isValidDate(const std::string& date);
 
 #endif

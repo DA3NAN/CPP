@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:31:55 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/17 15:33:47 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:50:31 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 		BitcoinExchange exchange(dataFile, ',');
 		dataFile.close();
 		TreatInput(inputFile, exchange, '|');
+		inputFile.close();
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return (1);

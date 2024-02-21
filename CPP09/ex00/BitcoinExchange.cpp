@@ -6,7 +6,7 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:41:31 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/21 15:17:42 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:41:22 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,29 +64,36 @@ void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator) 
 
     while (std::getline(file, line)) {
 		if (skip == 0) {
-			removeWhitespace(line);
-			std::istringstream iss(line);
-			std::string date;
-			std::string valueStr;
-
-			std::getline(iss, date, separator);
-			std::getline(iss, valueStr);
-			if (date == "date" && valueStr == "value") {
+			if (line == "date | value") {
 				skip = 1;
 				continue;
 			} else {
-				std::cout << "Error: bad input file format" << std::endl;
+				std::cerr << "Error: bad input file." << std::endl;
 				return;
 			}
 		}
-		removeWhitespace(line);
         std::istringstream iss(line);
+		//chck if line is empty or just white spaces
+		if (line.find_first_not_of(" \t\n\v\f\r") == std::string::npos) {
+			std::cerr << "Error: empty line." << std::endl;
+			continue;
+		}
         std::string date;
 		std::string valueStr;
         double value;
 
         std::getline(iss, date, separator);
+		if (parseDateWhitespaces(date) == 1) {
+			std::cerr << "Error: bad line: Usage: [date | value]" << std::endl;
+			continue;
+		}
+		removeWhitespace(date);
 		std::getline(iss, valueStr);
+		if (parseValueWhitespaces(valueStr) == 1) {
+			std::cerr << "Error: bad line: Usage: [date | value]" << std::endl;
+			continue;
+		}
+		removeWhitespace(valueStr);
 		std::stringstream valueStream(valueStr);
 
 		if (!isValidDate(date)) {
@@ -98,7 +105,7 @@ void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator) 
         } else if (value < 0) {
 			std::cout << "Error: not a positive number." << std::endl;
 			continue;
-		} else if (value > INT_MAX) {
+		} else if (value > 1000) {
 			std::cout << "Error: too large number." << std::endl;
 			continue;
 		}

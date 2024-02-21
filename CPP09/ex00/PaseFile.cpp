@@ -6,14 +6,59 @@
 /*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:59:53 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/21 15:25:14 by aait-mal         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:22:01 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
+int parseDateWhitespaces(const std::string& str) {
+    int count = 0;
+
+    if (std::isspace(str[0]))
+        return 1;
+    for (size_t i = str.size() - 1; i > 0; i--) {
+        if (std::isspace(str[i]))
+            count++;
+        else
+            break;
+    }
+    if (count != 1)
+        return 1;
+    return 0;
+}
+
+int parseValueWhitespaces(const std::string& str) {
+    int count = 0;
+
+    for (size_t i = 0; i < str.size(); i++) {
+        if (std::isspace(str[i]))
+            count++;
+        else
+            break;
+    }
+
+    if (count != 1)
+        return 1;
+    return 0;
+}
+
 void removeWhitespace(std::string& str) {
-    str.erase(std::remove_if(str.begin(), str.end(), ::isspace), str.end());
+    std::string argument(str);
+    size_t start = 0;
+    size_t end = argument.size();
+
+    // Skip leading whitespaces
+    while (start < end && std::isspace(argument[start]))
+        start++;
+
+    // Skip trailing whitespaces
+    while (end > start && std::isspace(argument[end - 1]))
+        end--;
+
+    std::string token;
+    token = argument.substr(start, end - start);
+    str = token;
 }
 
 bool isValidDate(const std::string& date) {
