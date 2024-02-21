@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 19:44:18 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/20 17:40:00 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/21 16:04:49 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 }
 
 void PmergeMe::SortVector() {
+	_start = clock();
+
 	std::vector<std::pair<int, int> > v_pairs;
 	std::vector<int> mainChain, pend, newPend;
 	std::vector<int> pendIndexes, jacobStal, combination;
@@ -92,6 +94,8 @@ void PmergeMe::SortVector() {
 }
 
 void PmergeMe::SortDeque() {
+	_start = clock();
+
     std::deque<std::pair<int, int> > d_pairs;
     std::deque<int> mainChain, pend, newPend;
     std::deque<int> pendIndexes, jacobStal, combination;
@@ -127,16 +131,14 @@ void PmergeMe::sort() {
 	std::cout << "Before: ";
 	print(_v);
 
-	_start = clock();
 	SortVector();
 	_vectorTime += _dataTime;
 
-	_start = clock();
 	SortDeque();
 	_dequeTime += _dataTime;
 
 	std::cout << "After: ";
-	print(sortedDeque);
+	print(sortedVector);
 
 	std::cout << "Time ro process a range of " << size << " elements with std::vector: " << _vectorTime << " us" << std::endl;
 	std::cout << "Time ro process a range of " << size << " elements with std::deque: " << _dequeTime << " us" << std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:41:31 by adnane            #+#    #+#             */
-/*   Updated: 2024/02/20 17:15:37 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/21 15:17:42 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,6 @@ double BitcoinExchange::getRate(std::string date) {
     --it;
 
     return it->second;
-}
-
-void BitcoinExchange::printMap() {
-	std::multimap<std::string, double>::iterator it = _data.begin();
-	while (it != _data.end()) {
-		std::cout << it->first << " : " << it->second << std::endl;
-		it++;
-	}
 }
 
 void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator) {

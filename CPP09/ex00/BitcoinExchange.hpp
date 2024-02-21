@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:18:14 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/20 17:19:25 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/21 15:17:33 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ class BitcoinExchange {
 		BitcoinExchange &operator=(const BitcoinExchange &src);
 		~BitcoinExchange();
 		double getRate(std::string date);
-		void printMap();
 };
 
 void TreatInput(std::ifstream &file, BitcoinExchange &exchange, char separator);

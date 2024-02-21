@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aait-mal <aait-mal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:47:19 by aait-mal          #+#    #+#             */
-/*   Updated: 2024/02/19 22:07:05 by adnane           ###   ########.fr       */
+/*   Updated: 2024/02/21 15:29:22 by aait-mal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class RPN {
 		RPN &operator=(const RPN &src);
 		~RPN();
 		void calculate();
-		void printStack();
 		void printResult();
 };
 
